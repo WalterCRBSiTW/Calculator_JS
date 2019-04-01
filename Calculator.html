@@ -151,8 +151,8 @@
       </button>
       <button
         type="button"
-        id="d-nb"
-        class="btn btn-outline-secondary  rounded mx-2"
+        class="ca btn btn-outline-secondary  rounded mx-2"
+        value="-"
       >
         <h4>+/-</h4>
       </button>
@@ -165,8 +165,7 @@
       </button>
       <button
         type="button"
-        id="pot"
-        class="btn btn-outline-secondary  rounded mx-2"
+        class="ca btn btn-outline-secondary  rounded mx-2"
         value="."
       >
         <h4>.</h4>
@@ -186,6 +185,7 @@
       var show = document.getElementById("sd");
       var cut = document.getElementsByClassName("cut");
       var c = document.getElementsByClassName("clear");
+      var change = document.getElementsByClassName("ca");
 
       for (var i = 0; i < newNum.length; i++) {
         newNum[i].onclick = getNum;
@@ -242,14 +242,29 @@
           var result = [];
           for (var i = 0; i < input.value.length; i++) {
             result += input.value[i];
-          }         
-          str = result.substring(0, result.length-1); 
+          }
+          str = result.substring(0, result.length - 1);
           input.value = str;
-          
         }
-        
-
         return;
+      }
+
+      for (var i = 0; i < change.length; i++) {
+        change[i].onclick = dochange;
+      }
+      function dochange() {
+        if (input.value == "") {
+          return;
+        }
+        if (this.value == "-") {
+          input.value = parseFloat(input.value) * -1; //parseFloat 将它的字符串参数解析成为浮点数并返回。
+        }
+        if (this.value == ".") {
+          if (input.value.indexOf(".") != -1 || input.value == "") {  //？？？？？？？？？？？？？？？？？？
+            return;
+          }
+          input.value += ".";
+        }
       }
     </script>
   </body>
