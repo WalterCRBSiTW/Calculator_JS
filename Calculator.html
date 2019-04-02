@@ -186,6 +186,7 @@
       var cut = document.getElementsByClassName("cut");
       var c = document.getElementsByClassName("clear");
       var change = document.getElementsByClassName("ca");
+      var eql = document.getElementById("eql");
 
       for (var i = 0; i < newNum.length; i++) {
         newNum[i].onclick = getNum;
@@ -260,11 +261,18 @@
           input.value = parseFloat(input.value) * -1; //parseFloat 将它的字符串参数解析成为浮点数并返回。
         }
         if (this.value == ".") {
-          if (input.value.indexOf(".") != -1 || input.value == "") {  //？？？？？？？？？？？？？？？？？？
+          if (input.value.indexOf(".") != -1 || input.value == "") {
+            //？？？？？？？？？？？？？？？？？？
             return;
           }
           input.value += ".";
         }
+      }
+
+      eql.onclick = doeql;
+      function doeql() {
+        show.innerText = eval(show.innerText + input.value);
+        input.value = "";       
       }
     </script>
   </body>
